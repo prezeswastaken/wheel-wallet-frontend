@@ -10,10 +10,16 @@ type CarCreateData = {
 
 export const useCarStore = defineStore("car", () => {
   const cars = ref<Car[] | null>(null);
+  const currentCar = ref<Car | null>(null);
 
   async function fetchCarsByUserID(userID: number) {
     const { data, error } = await useApiFetch(`/api/user/${userID}/cars`);
     cars.value = data.value as Car[];
+  }
+
+  async function fetchCurrentCarByCarID(carID: number) {
+    const { data, error } = await useApiFetch(`/api/car/${carID}`);
+    currentCar.value = data.value.car as Car;
   }
 
   async function createCar(carCreateData: CarCreateData) {
@@ -35,5 +41,12 @@ export const useCarStore = defineStore("car", () => {
     }
   });
 
-  return { fetchCarsByUserID, cars, hasCars, createCar };
+  return {
+    fetchCarsByUserID,
+    cars,
+    hasCars,
+    createCar,
+    fetchCurrentCarByCarID,
+    currentCar,
+  };
 });
