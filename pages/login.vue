@@ -59,6 +59,7 @@ async function handleLogin() {
           >
           <PrimaryButton text="sign in" />
         </div>
+        <LoginWithSocialMedia />
       </form>
     </div>
   </div>
