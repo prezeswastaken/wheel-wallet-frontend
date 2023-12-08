@@ -9,16 +9,22 @@ const form = ref({
   status: "",
   owner_id: 0,
 });
-const errorMessage = ref("");
+type ErrorMessages = {
+  model: Array<String>;
+  status: Array<String>;
+};
+const errorMessages = ref<ErrorMessages | null>();
 async function handleSubmit() {
   if (authStore.user == null) {
     return;
   }
 
   form.value.owner_id = authStore.user.id;
-  const response = await carStore.createCar(form.value);
-  if (response.error.value != null) {
-    console.log(response.error.value.data.message);
+  const { error } = await carStore.createCar(form.value);
+  if (error.value != null) {
+    console.log("ERROR!!!");
+    console.log(error.value.message);
+    errorMessages.value = error.value.data.errors;
   } else {
     await navigateTo("/dashboard");
   }
@@ -42,6 +48,9 @@ async function handleSubmit() {
           class=""
           placeholder="Enter model of your car here..."
         />
+        <p class="mb-3 w-96 text-error-color" v-if="errorMessages?.model">
+          {{ errorMessages.model[0] }}
+        </p>
         <InputField
           :modelValue="form.status"
           @update:modelValue="form.status = $event"
@@ -50,7 +59,9 @@ async function handleSubmit() {
           class="w-full"
           placeholder="Enter status of your car here (optional)"
         />
-        <p class="w-96 text-error-color">{{ errorMessage }}</p>
+        <p class="mb-3 w-96 text-error-color" v-if="errorMessages?.status">
+          {{ errorMessages.status[0] }}
+        </p>
         <div class="flex justify-between mt-2">
           <p></p>
           <PrimaryButton text="create car" />

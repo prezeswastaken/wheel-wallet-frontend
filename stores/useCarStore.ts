@@ -23,9 +23,6 @@ export const useCarStore = defineStore("car", () => {
   }
 
   async function createCar(carCreateData: CarCreateData) {
-    if (carCreateData.status == "") {
-      carCreateData.status = "(empty)";
-    }
     const response = await useApiFetch("/api/car", {
       method: "post",
       body: carCreateData,
