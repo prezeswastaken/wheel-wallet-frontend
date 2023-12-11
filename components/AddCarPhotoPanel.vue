@@ -9,7 +9,7 @@ onMounted(() => {
   }
 });
 
-const emit = defineEmits(["submit"]);
+const emit = defineEmits(["close"]);
 
 const file: Ref<null | File> = ref(null);
 async function handleSubmit() {
@@ -23,7 +23,7 @@ async function handleSubmit() {
       method: "POST",
       body: formData,
     });
-    emit("submit");
+    emit("close");
 
     console.log(`File ${res} submited succesfully!`);
   }
@@ -39,14 +39,19 @@ function handleFileChange(event: Event) {
     class="fixed top-0 left-0 w-screen h-screen bg-[#181926] bg-opacity-50 flex flex-col items-center justify-center"
   >
     <div
-      class="flex flex-col gap-10 p-5 w-1/2 rounded-3xl bg-overlay-background-color"
+      class="flex flex-col gap-10 p-5 w-1/2 rounded-3xl border-4 border-background-color bg-overlay-background-color"
     >
       <div class="flex justify-between">
         <p></p>
         <h1 class="self-center text-5xl text-center text-header-color">
           Add photo of your car
         </h1>
-        <p></p>
+        <button
+          class="mr-5 text-3xl duration-300 text-text-color hover:text-error-color"
+          @click="$emit('close')"
+        >
+          󰛉
+        </button>
       </div>
       <form
         @submit.prevent="handleSubmit"

@@ -23,7 +23,7 @@ onMounted(async () => {
 <template>
   <div
     v-if="carStore.currentCar"
-    class="flex flex-col gap-10 p-10 mt-5 rounded-3xl bg-overlay-background-color"
+    class="flex flex-col gap-5 p-10 mt-5 rounded-3xl bg-overlay-background-color"
   >
     <div>
       <p class="text-3xl text-header-color" v-if="authStore.user">
@@ -34,25 +34,28 @@ onMounted(async () => {
       </p>
     </div>
 
-    <div class="flex overflow-auto gap-10 p-10 rounded-3xl bg-background-color">
-      <div
-        class="flex flex-col justify-center self-center w-32 h-32 rounded-3xl bg-overlay-background-color group"
-      >
-        <Button
-          class="w-32 text-5xl text-center duration-300 group-hover:text-hover-color"
-          @click="() => (isAddingCarPhoto = true)"
+    <div class="flex flex-col gap-10 p-10 rounded-3xl bg-background-color">
+      <h2 class="text-3xl text-header-color">Photo gallery</h2>
+      <div class="flex overflow-auto gap-10 pb-10">
+        <div
+          class="flex flex-col justify-center self-center w-32 h-32 rounded-3xl bg-overlay-background-color group"
         >
-          
-        </Button>
+          <button
+            class="w-32 text-5xl text-center duration-300 group-hover:text-hover-color"
+            @click="() => (isAddingCarPhoto = true)"
+          >
+            
+          </button>
+        </div>
+        <img
+          class="h-32 rounded-3xl shadow-md"
+          v-for="photo in carStore.currentCar.photos?.toReversed()"
+          :src="`//localhost:8000/uploads/car_photos/${photo.content}`"
+        />
       </div>
-      <img
-        class="h-32 rounded-3xl shadow-md"
-        v-for="photo in carStore.currentCar.photos?.toReversed()"
-        :src="`//localhost:8000/uploads/car_photos/${photo.content}`"
-      />
     </div>
     <AddCarPhotoPanel
-      @submit="
+      @close="
         () => {
           isAddingCarPhoto = false;
           fetchCurrentCar();
@@ -60,6 +63,7 @@ onMounted(async () => {
       "
       v-if="isAddingCarPhoto"
     />
+    <CurrentCarExpenseView />
   </div>
   <div v-else>This car dosen't exist!</div>
 </template>

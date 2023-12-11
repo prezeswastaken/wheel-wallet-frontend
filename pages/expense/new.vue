@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import { useAuthStore } from "~/stores/useAuthStore";
 import { useCarStore } from "~/stores/useCarStore";
+import { useExpenseStore } from "~/stores/useExpenseStore";
+import type { ExpenseCreateData } from "~/types/ExpenseType";
 
+const route = useRoute();
 const authStore = useAuthStore();
 const carStore = useCarStore();
-const form = ref({
-  model: "",
-  status: "",
-  owner_id: 0,
+const expenseStore = useExpenseStore();
+const form = ref<ExpenseCreateData>({
+  name: "",
+  cost: 0,
+  date: "",
+  planned: false,
 });
 
 type ErrorMessages = {
@@ -22,14 +27,14 @@ async function handleSubmit() {
     return;
   }
 
-  form.value.owner_id = authStore.user.id;
-  const { error } = await carStore.createCar(form.value);
+  const { error } = await expenseStore.createExpense(form.value);
   if (error.value != null) {
     console.log("ERROR!!!");
     console.log(error.value.message);
     errorMessages.value = error.value.data.errors;
+    console.log(errorMessages);
   } else {
-    await navigateTo("/dashboard");
+    await navigateTo(`/car/${route.query.carID}`);
   }
 }
 </script>
