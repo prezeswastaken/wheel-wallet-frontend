@@ -15,4 +15,5 @@ export type ExpenseCreateData = {
   cost: number;
   date: string;
   planned: boolean;
+  car_id: number;
 };

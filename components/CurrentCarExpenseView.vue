@@ -100,7 +100,10 @@ onMounted(() => {
       <div
         class="flex flex-col gap-10 p-10 w-full rounded-3xl bg-overlay-background-color"
       >
-        <Expense :expense="expense" v-for="expense in expensesToShow" />
+        <Expense
+          :expense="expense"
+          v-for="expense in expensesToShow?.toReversed()"
+        />
       </div>
 
       <!-- Graphs related to expenses -->
