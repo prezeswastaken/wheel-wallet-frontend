@@ -9,6 +9,8 @@ const route = useRoute();
 
 const isAddingCarPhoto = ref(false);
 
+const showCarCode = ref(false);
+
 async function fetchCurrentCar() {
   if (authStore.user != null) {
     await carStore.fetchCurrentCarByCarID(route.params.id as unknown as number);
@@ -25,13 +27,32 @@ onMounted(async () => {
     v-if="carStore.currentCar"
     class="flex flex-col gap-5 p-10 mt-5 rounded-3xl bg-overlay-background-color"
   >
-    <div>
-      <p class="text-3xl text-header-color" v-if="authStore.user">
-        {{ carStore.currentCar.model }}
-      </p>
-      <p v-if="carStore.currentCar.status != '(empty)'">
-        {{ carStore.currentCar.status }}
-      </p>
+    <div class="flex justify-between">
+      <div>
+        <p class="text-3xl text-header-color" v-if="authStore.user">
+          {{ carStore.currentCar.model }}
+        </p>
+        <p v-if="carStore.currentCar.status != '(empty)'">
+          {{ carStore.currentCar.status }}
+        </p>
+      </div>
+      <div class="flex gap-5 items-center">
+        <div class="flex flex-col items-center" v-if="showCarCode">
+          <p class="p-3 text-3xl rounded-3xl bg-expense-color w-fit">
+            {{ carStore.currentCar.code }}
+          </p>
+          <p>
+            Give above code to co-owner of this car, so they can use it to add
+            this car to their garage
+          </p>
+        </div>
+        <button
+          class="flex justify-center items-center p-3 h-10 text-left uppercase rounded-3xl border border-transparent duration-300 hover:bg-transparent bg-header-color text-background-color hover:text-header-color hover:border-header-color"
+          @click="showCarCode = !showCarCode"
+        >
+          {{ showCarCode ? "hide car code" : "show car code" }}
+        </button>
+      </div>
     </div>
 
     <div class="flex flex-col gap-10 p-10 rounded-3xl bg-background-color">

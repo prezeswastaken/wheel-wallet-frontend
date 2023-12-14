@@ -8,6 +8,10 @@ type CarCreateData = {
   owner_id: number;
 };
 
+export type CarFromCodeData = {
+  code: string;
+};
+
 export const useCarStore = defineStore("car", () => {
   const cars = ref<Car[] | null>(null);
   const currentCar = ref<Car | null>(null);
@@ -30,6 +34,14 @@ export const useCarStore = defineStore("car", () => {
     return response;
   }
 
+  async function addCarFromCode(carFromCodeData: CarFromCodeData) {
+    const response = await useApiFetch("/api/car/join", {
+      method: "post",
+      body: carFromCodeData,
+    });
+    return response;
+  }
+
   const hasCars = computed(() => {
     if (cars.value && typeof cars.value.length !== "undefined") {
       return cars.value.length > 0;
@@ -45,5 +57,6 @@ export const useCarStore = defineStore("car", () => {
     createCar,
     fetchCurrentCarByCarID,
     currentCar,
+    addCarFromCode,
   };
 });
