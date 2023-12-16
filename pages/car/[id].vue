@@ -17,6 +17,17 @@ async function fetchCurrentCar() {
   }
 }
 
+const isOwner = computed(() => {
+  return authStore.user?.id == carStore.currentCar?.owner_id;
+});
+
+async function handlePhotoDelete(id: number) {
+  const url = `/api/photo/${id}/delete`;
+  await useApiFetch(url, { method: "DELETE" });
+  fetchCurrentCar();
+  console.log(`Deleting photo with id ${id}`);
+}
+
 onMounted(async () => {
   await fetchCurrentCar();
 });
@@ -35,6 +46,7 @@ onMounted(async () => {
         <p v-if="carStore.currentCar.status != '(empty)'">
           {{ carStore.currentCar.status }}
         </p>
+        <p>You are {{ isOwner ? "owner" : "co-owner" }} of this car</p>
       </div>
       <div class="flex gap-5 items-center">
         <div class="flex flex-col items-center" v-if="showCarCode">
@@ -68,11 +80,26 @@ onMounted(async () => {
             
           </button>
         </div>
-        <img
-          class="h-32 rounded-3xl shadow-md"
+        <div
+          class="flex overflow-auto relative flex-shrink-0 rounded-3xl group"
           v-for="photo in carStore.currentCar.photos?.toReversed()"
-          :src="`//localhost:8000/uploads/car_photos/${photo.content}`"
-        />
+        >
+          <img
+            class="h-32 rounded-3xl shadow-md w-fit"
+            :src="`//localhost:8000/uploads/car_photos/${photo.content}`"
+          />
+          <div
+            class="flex absolute flex-col justify-center items-center w-full h-full rounded-3xl opacity-0 duration-300 group-hover:opacity-90 bg-overlay-background-color"
+          >
+            <button
+              @click="handlePhotoDelete(photo.id as unknown as number)"
+              class="flex justify-center items-center w-auto text-3xl duration-300 group/show hover:text-error-color"
+            >
+              󰆴
+            </button>
+            <p></p>
+          </div>
+        </div>
       </div>
     </div>
     <AddCarPhotoPanel

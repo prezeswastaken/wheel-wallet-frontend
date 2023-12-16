@@ -51,7 +51,6 @@ async function handleLogin() {
           class="w-96"
         />
         <p class="w-96 text-error-color">{{ errorMessage }}</p>
-        <LoginWithSocialMedia />
         <div class="flex justify-between mt-2">
           <NuxtLink
             class="w-60 duration-300 text-blue-color hover:text-hover-color"
@@ -60,6 +59,8 @@ async function handleLogin() {
           >
           <PrimaryButton text="sign in" />
         </div>
+        <LoginWithSocialMedia />
+        <div class="flex justify-between mt-2"></div>
       </form>
     </div>
   </div>

@@ -3,6 +3,7 @@ import type { UseFetchOptions } from "nuxt/app";
 export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
   let headers: any = {
     referer: "http://localhost:3000",
+    charset: "UTF-8",
   };
   const token = useCookie("XSRF-TOKEN");
 
