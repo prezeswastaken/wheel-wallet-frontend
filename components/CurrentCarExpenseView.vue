@@ -95,8 +95,9 @@ onMounted(() => {
       <p>add new expense</p>
       <ArrowRightIcon class="mb-0.5 ml-1 w-6 h-5" />
     </NuxtLink>
-    <div class="flex flex-col gap-10 lg:flex-row">
+    <div class="flex flex-col gap-10">
       <!-- List of expenses -->
+
       <div
         class="flex flex-col gap-10 p-10 w-full rounded-3xl bg-overlay-background-color"
       >
@@ -107,10 +108,15 @@ onMounted(() => {
       </div>
 
       <!-- Graphs related to expenses -->
-      <div
-        class="flex flex-col gap-10 p-10 w-full rounded-3xl bg-overlay-background-color"
-      >
-        penes
+      <div class="p-10 w-full rounded-3xl bg-overlay-background-color">
+        <!-- Graphs for current car -->
+        <CarGraphs
+          v-if="
+            expensesToShow != null &&
+            expensesToShow != undefined &&
+            expensesToShow[0] != null
+          "
+        />
       </div>
     </div>
   </div>
