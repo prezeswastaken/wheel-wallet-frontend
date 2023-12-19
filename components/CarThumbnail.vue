@@ -24,7 +24,7 @@ const photo = computed(() => {
     <img
       :src="`${photo}`"
       alt="nothing here :("
-      class="w-full h-full rounded-lg"
+      class="w-full h-full rounded-lg shadow-2xl shadow-background-color"
     />
     <div
       class="flex absolute flex-col justify-around w-full h-full opacity-0 duration-300 group-hover:opacity-90 bg-overlay-background-color"

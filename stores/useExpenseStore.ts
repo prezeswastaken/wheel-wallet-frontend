@@ -9,6 +9,11 @@ export const useExpenseStore = defineStore("expense", () => {
     expenses.value = data.value as Expense[];
   }
 
+  async function fetchExpensesByUserID(userID: number) {
+    const { data } = await useApiFetch(`/api/user/${userID}/expenses`);
+    expenses.value = data.value as Expense[];
+  }
+
   async function createExpense(expenseCreateData: ExpenseCreateData) {
     const response = await useApiFetch("/api/expense", {
       method: "post",
@@ -28,6 +33,7 @@ export const useExpenseStore = defineStore("expense", () => {
   return {
     expenses,
     fetchExpensesByCarID,
+    fetchExpensesByUserID,
     createExpense,
     hasExpenses,
   };

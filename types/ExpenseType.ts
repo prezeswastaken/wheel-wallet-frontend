@@ -2,6 +2,7 @@ export type Expense = {
   id: number;
   user_id: number;
   car_id: number;
+  car_model: string;
   name: string;
   cost: number;
   date: string;
