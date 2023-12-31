@@ -18,3 +18,10 @@ export type ExpenseCreateData = {
   planned: boolean;
   car_id: number;
 };
+
+export type ExpenseEditData = {
+  name: string;
+  cost: number;
+  date: string;
+  planned: boolean;
+};

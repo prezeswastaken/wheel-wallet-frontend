@@ -1,5 +1,9 @@
 import { defineStore } from "pinia";
-import type { Expense, ExpenseCreateData } from "~/types/ExpenseType";
+import type {
+  Expense,
+  ExpenseCreateData,
+  ExpenseEditData,
+} from "~/types/ExpenseType";
 
 export const useExpenseStore = defineStore("expense", () => {
   const expenses = ref<Expense[] | null>(null);
@@ -22,6 +26,17 @@ export const useExpenseStore = defineStore("expense", () => {
     return response;
   }
 
+  async function updateExpense(
+    expenseEditData: ExpenseEditData,
+    expenseID: number,
+  ) {
+    const response = await useApiFetch(`/api/expense/${expenseID}/edit`, {
+      method: "put",
+      body: expenseEditData,
+    });
+    return response;
+  }
+
   const hasExpenses = computed(() => {
     if (expenses.value && typeof expenses.value.length !== "undefined") {
       return expenses.value.length > 0;
@@ -35,6 +50,7 @@ export const useExpenseStore = defineStore("expense", () => {
     fetchExpensesByCarID,
     fetchExpensesByUserID,
     createExpense,
+    updateExpense,
     hasExpenses,
   };
 });
