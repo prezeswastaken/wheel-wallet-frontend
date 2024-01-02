@@ -103,7 +103,7 @@ async function updateExpenses() {
   }
 
   plannedExpensesChartData.value = {
-    labels: ["Planned", "Not planned"],
+    labels: ["Planned", "Done"],
     datasets: [
       {
         label: "Total sum",

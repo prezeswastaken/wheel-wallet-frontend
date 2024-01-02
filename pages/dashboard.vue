@@ -41,7 +41,7 @@ onMounted(async () => {
           <ArrowRightIcon class="mb-0.5 ml-1 w-6 h-5" />
         </NuxtLink>
         <div
-          class="grid grid-cols-1 gap-10 p-10 mt-5 rounded-3xl sm:grid-cols-2 bg-overlay-background-color"
+          class="grid grid-cols-2 gap-10 p-10 mt-5 rounded-3xl bg-overlay-background-color"
         >
           <p v-if="!carStore.hasCars" class="self-center">
             You don't have any cars yet! Go change that, right now!

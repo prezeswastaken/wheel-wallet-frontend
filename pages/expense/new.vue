@@ -136,7 +136,7 @@ async function handleSubmit() {
               :value="false"
               class="bg-gray-700 rounded-3xl text-text-color"
             >
-              Not Planned
+              Done
             </option>
           </select>
         </div>

@@ -33,6 +33,14 @@ export const useCarStore = defineStore("car", () => {
     });
     return response;
   }
+
+  async function deleteCar(carID: number) {
+    const response = await useApiFetch(`/api/car/${carID}/delete`, {
+      method: "delete",
+    });
+    return response;
+  }
+
   async function editCar(carEditData: CarCreateData, carID: number) {
     const response = await useApiFetch(`/api/car/${carID}/edit`, {
       method: "put",
@@ -63,6 +71,7 @@ export const useCarStore = defineStore("car", () => {
     hasCars,
     createCar,
     editCar,
+    deleteCar,
     fetchCurrentCarByCarID,
     currentCar,
     addCarFromCode,

@@ -146,7 +146,7 @@ const chartOptions = {
             >
               <p></p>
               <div :to="`/car/${car.id}`">
-                <p>{{ car.model }}</p>
+                <p class="text-md">{{ car.model }}</p>
               </div>
             </NuxtLink>
             <div class="flex gap-10">

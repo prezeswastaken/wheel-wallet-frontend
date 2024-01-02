@@ -85,7 +85,7 @@ onMounted(() => {
           v-model="plannedFilterOption"
           :value="PlannedFilterOptions.NotPlanned"
         />
-        Not Planned
+        Done
       </label>
     </div>
     <NuxtLink
