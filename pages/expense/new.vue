@@ -159,7 +159,7 @@ async function handleSubmit() {
         </div>
         <div class="flex justify-between mt-2">
           <p></p>
-          <PrimaryButton text="create car" />
+          <PrimaryButton text="create expense" />
         </div>
       </form>
     </div>

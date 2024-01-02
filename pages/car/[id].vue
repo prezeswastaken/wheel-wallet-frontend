@@ -47,6 +47,12 @@ onMounted(async () => {
           {{ carStore.currentCar.status }}
         </p>
         <p>You are {{ isOwner ? "owner" : "co-owner" }} of this car</p>
+        <NuxtLink
+          class="flex justify-center items-center p-3 mt-5 h-10 text-left uppercase rounded-3xl border border-transparent duration-300 hover:bg-transparent bg-header-color text-background-color hover:text-header-color hover:border-header-color"
+          :to="`/car/edit/${carStore.currentCar.id}`"
+        >
+          Edit car details
+        </NuxtLink>
       </div>
       <div class="flex gap-5 items-center">
         <div class="flex flex-col items-center" v-if="showCarCode">

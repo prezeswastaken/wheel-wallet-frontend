@@ -104,7 +104,7 @@ async function handleSubmit() {
       class="flex flex-col gap-10 items-start py-20 px-20 mt-5 w-3/4 text-lg rounded-3xl bg-overlay-background-color"
     >
       <h1 class="self-center text-3xl text-header-color">
-        {{ expense?.name }} for {{ expense?.car_model }}
+        Editing "{{ expense?.name }}" for {{ expense?.car_model }}
       </h1>
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-5 w-full">
         <!-- Name field -->
@@ -176,7 +176,7 @@ async function handleSubmit() {
         </div>
         <div class="flex justify-between mt-2">
           <p></p>
-          <PrimaryButton text="create car" />
+          <PrimaryButton text="save changes" />
         </div>
       </form>
     </div>

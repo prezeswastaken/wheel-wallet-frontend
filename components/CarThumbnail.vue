@@ -11,7 +11,8 @@ const props = defineProps({
 const photo = computed(() => {
   let photo = props.car?.photo?.content;
   if (!photo || photo == undefined) {
-    photo = "https://i.imgflip.com/15vpit.jpg?a471432";
+    //photo = "https://i.imgflip.com/15vpit.jpg?a471432";
+    photo = "https://th.bing.com/th/id/OIG.qhmoN7mmYJuUWbgUucr1?pid=ImgGn";
     return photo;
   }
   console.log(photo);
