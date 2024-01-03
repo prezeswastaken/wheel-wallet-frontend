@@ -15,7 +15,6 @@
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@samk-dev/nuxt-vcalendar": "^1.0.2",
     "nuxt": "^3.7.4",
-    "vitest": "^0.33.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
   },
