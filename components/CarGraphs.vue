@@ -4,7 +4,7 @@ import { Doughnut } from "vue-chartjs";
 import { useAuthStore } from "~/stores/useAuthStore";
 import { useCarStore } from "~/stores/useCarStore";
 import { useExpenseStore } from "~/stores/useExpenseStore";
-import { Expense } from "~/types/ExpenseType";
+import type { Expense } from "~/types/ExpenseType";
 
 const authStore = useAuthStore();
 const route = useRoute();
