@@ -1,4 +1,6 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const config = useRuntimeConfig();
+</script>
 
 <template>
   <div class="flex flex-col gap-5">
@@ -8,14 +10,14 @@
     </p>
     <NuxtLink
       class="flex gap-4 justify-center items-center p-5 text-center uppercase rounded-3xl border duration-300 text-blue-lighter-color border-blue-lighter-color hover:text-hover-color hover:border-hover-color"
-      to="http://localhost:8000/login/discord"
+      :to="`${config.public.laravelApiUrl}/login/discord`"
     >
       login with discord
       <p class="text-4xl">󰙯</p>
     </NuxtLink>
     <NuxtLink
       class="flex gap-6 justify-center items-center p-5 text-center uppercase rounded-3xl border duration-300 text-blue-lighter-color border-blue-lighter-color hover:text-hover-color hover:border-hover-color"
-      to="http://localhost:8000/login/github"
+      :to="`${config.public.laravelApiUrl}/login/github`"
     >
       login with github
       <p class="text-4xl"></p>

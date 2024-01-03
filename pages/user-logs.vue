@@ -39,7 +39,7 @@ function parseDate(date: string) {
   <div
     class="grid relative grid-cols-4 gap-5 p-5 rounded-3xl bg-overlay-background-color"
   >
-    <p v-if="logs?.length == 0">You dont have any logs yet!</p>
+    <p v-if="logs?.length == 0">You don't have any logs yet!</p>
     <div
       v-else
       v-for="log in logs"

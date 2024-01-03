@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { InformationCircleIcon } from "@heroicons/vue/24/outline";
 import type { Car } from "~/types/CarType";
+const config = useRuntimeConfig();
 const props = defineProps({
   imageUrl: {
     type: String,
@@ -16,7 +17,7 @@ const photo = computed(() => {
     return photo;
   }
   console.log(photo);
-  return `//localhost:8000/uploads/car_photos/${photo}`;
+  return `${config.public.laravelApiUrl}/uploads/car_photos/${photo}`;
 });
 </script>
 

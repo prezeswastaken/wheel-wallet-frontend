@@ -2,16 +2,6 @@
 definePageMeta({
   middleware: ["guest"],
 });
-const messageFromApi = ref("Waiting for response from API...");
-async function fetchHello() {
-  const response = await fetch("//localhost:8000/api/hello");
-  const data = await response.json();
-  messageFromApi.value = data.message;
-  console.log(data.message);
-}
-onMounted(() => {
-  fetchHello();
-});
 </script>
 <template>
   <div>

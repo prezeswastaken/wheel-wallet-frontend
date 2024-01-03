@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useAuthStore } from "~/stores/useAuthStore";
 import { useCarStore } from "~/stores/useCarStore";
+const config = useRuntimeConfig();
 
 const carStore = useCarStore();
 const authStore = useAuthStore();
@@ -92,7 +93,7 @@ onMounted(async () => {
         >
           <img
             class="h-32 rounded-3xl shadow-md w-fit"
-            :src="`//localhost:8000/uploads/car_photos/${photo.content}`"
+            :src="`${config.public.laravelApiUrl}/uploads/car_photos/${photo.content}`"
           />
           <div
             class="flex absolute flex-col justify-center items-center w-full h-full rounded-3xl opacity-0 duration-300 group-hover:opacity-90 bg-overlay-background-color"

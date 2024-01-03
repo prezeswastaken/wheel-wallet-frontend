@@ -58,7 +58,7 @@ async function handleSubmit() {
             type="text"
             fieldName="enter code you received from owner of the car"
             class=""
-            placeholder="Enter the code here here..."
+            placeholder="Enter the code here..."
           />
           <p class="mb-3 w-96 text-error-color" v-if="errorMessages?.code">
             {{ errorMessages.code[0] }}

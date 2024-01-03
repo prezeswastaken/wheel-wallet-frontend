@@ -1,8 +1,9 @@
 import type { UseFetchOptions } from "nuxt/app";
 
 export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
+  const config = useRuntimeConfig();
   let headers: any = {
-    referer: "http://localhost:3000",
+    referer: config.public.frontendUrl,
     charset: "UTF-8",
   };
   const token = useCookie("XSRF-TOKEN");
@@ -17,7 +18,7 @@ export function useApiFetch<T>(path: string, options: UseFetchOptions<T> = {}) {
       ...useRequestHeaders(["cookie"]),
     };
   }
-  return useFetch(`http://localhost:8000${path}`, {
+  return useFetch(`${config.public.laravelApiUrl}${path}`, {
     credentials: "include",
     watch: false,
     ...options,
