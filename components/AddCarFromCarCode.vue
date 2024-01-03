@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { AddCarFromCarCode } from "#build/components";
-import { CarFromCodeData, useCarStore } from "~/stores/useCarStore";
+import type { CarFromCodeData } from "~/stores/useCarStore";
+import { useCarStore } from "~/stores/useCarStore";
 
 const carStore = useCarStore();
 onMounted(() => {});
