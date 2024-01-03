@@ -59,6 +59,8 @@ async function handleLogin() {
           >
           <PrimaryButton text="sign in" />
         </div>
+        <LoginWithSocialMedia />
+        <div class="flex justify-between mt-2"></div>
       </form>
     </div>
   </div>

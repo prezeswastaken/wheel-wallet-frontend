@@ -76,6 +76,7 @@ async function handleRegister() {
           >
           <PrimaryButton text="sign up" />
         </div>
+        <LoginWithSocialMedia />
       </form>
     </div>
   </div>

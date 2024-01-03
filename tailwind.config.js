@@ -14,6 +14,7 @@ export default {
         "button-active-main-color": "#EED49F",
         "blue-color": "#8aadf4",
         "blue-lighter-color": "#7dc4e4",
+        "expense-color": "#494d64",
       },
       fontFamily: {
         myMono: ["JetBrains Mono"],
