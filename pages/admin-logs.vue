@@ -4,13 +4,13 @@ definePageMeta({
 });
 
 import { useAuthStore } from "~/stores/useAuthStore";
-import { LogType } from "~/types/LogType";
+import type { LogType } from "~/types/LogType";
 
 const logs = ref<Array<LogType> | null>(null);
 
 onMounted(async () => {
   const response = await useApiFetch(`/api/logs`);
-  logs.value = response.data.value.cars as Array<LogType>;
+  logs.value = response.data.value.logs as Array<LogType>;
   console.log(logs.value);
 });
 
