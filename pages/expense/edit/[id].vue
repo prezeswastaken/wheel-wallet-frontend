@@ -6,6 +6,7 @@ import type { ExpenseCreateData } from "~/types/ExpenseType";
 import type { Expense } from "~/types/ExpenseType";
 import type { ExpenseEditData } from "~/types/ExpenseType";
 
+const showDeletePopup = ref(false);
 const date = ref(new Date());
 const dateProcessed = computed(() => {
   const originalDate = date.value;
@@ -94,12 +95,25 @@ async function handleSubmit() {
     await navigateTo(`/car/${carID}`);
   }
 }
+
+async function handleDelete() {
+  const { error } = await expenseStore.deleteExpense(
+    route.params.id as unknown as number,
+  );
+  await navigateTo(`/car/${carID}`);
+}
 </script>
 
 <template>
   <div
     class="flex flex-col justify-center items-center p-10 py-5 w-full h-full"
   >
+    <button
+      class="self-end font-bold shadow-[#181926] shadow-lg flex justify-center items-center p-3 h-10 text-left uppercase rounded-3xl border-transparent duration-300 hover:bg-transparent bg-error-color text-background-color hover:text-error-color hover:border-error-color border-4"
+      @click="showDeletePopup = true"
+    >
+      delete car
+    </button>
     <div
       class="flex flex-col gap-10 items-start py-20 px-20 mt-5 w-3/4 text-lg rounded-3xl bg-overlay-background-color"
     >
@@ -175,10 +189,43 @@ async function handleSubmit() {
           />
         </div>
         <div class="flex justify-between mt-2">
-          <p></p>
+          <NuxtLink
+            class="duration-300 hover:text-blue-lighter-color"
+            :to="`/car/${carID}`"
+            >GO BACK</NuxtLink
+          >
           <PrimaryButton text="save changes" />
         </div>
       </form>
+      <div
+        v-if="showDeletePopup"
+        class="fixed inset-0 bg-black opacity-50"
+      ></div>
+      <div
+        v-if="showDeletePopup"
+        class="flex fixed top-1/2 left-1/2 flex-col justify-between items-center p-5 w-1/2 h-1/2 rounded-3xl transform -translate-x-1/2 -translate-y-1/2 border-text-color bg-expense-color"
+      >
+        <h1 class="flex self-center text-lg text-center text-header-color">
+          Are you sure u want to delete
+          <p class="ml-2 text-error-color">{{ expense?.name }}</p>
+          ?
+        </h1>
+        <img src="https://i.imgur.com/HLfo6gn.png" class="w-1/3" />
+        <div class="flex justify-between w-full">
+          <button
+            @click="showDeletePopup = false"
+            class="p-5 w-72 rounded-3xl border-4 duration-300 border-text-color hover:text-hover-color hover:border-hover-color"
+          >
+            NO
+          </button>
+          <button
+            @click="handleDelete()"
+            class="p-5 w-72 rounded-3xl border-4 duration-500 hover:scale-150 text-error-color border-error-color"
+          >
+            YES
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
