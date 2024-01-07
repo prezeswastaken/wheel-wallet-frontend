@@ -88,7 +88,11 @@ async function handleDelete() {
           {{ errorMessages.status[0] }}
         </p>
         <div class="flex justify-between mt-2">
-          <p></p>
+          <NuxtLink
+            class="duration-300 hover:text-blue-lighter-color"
+            :to="`/car/${route.params.id as unknown as number}`"
+            >GO BACK</NuxtLink
+          >
           <PrimaryButton text="save changes" />
         </div>
       </form>
