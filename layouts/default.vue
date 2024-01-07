@@ -5,9 +5,6 @@ const auth = useAuthStore();
 </script>
 
 <template>
-  <head>
-    <title>Wheel Wallet - keep your car budget rolling</title>
-  </head>
   <div
     class="p-10 w-screen min-h-screen font-myMono bg-background-color text-text-color"
   >
