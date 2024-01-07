@@ -1,3 +1,16 @@
+<script setup lang="ts">
+useSeoMeta({
+  charset: "utf-8",
+  viewport: "width=device-width, initial-scale=1",
+  title: "Wheel Wallet - Keep your car budget rolling",
+  ogTitle: "Wheel Wallet",
+  description:
+    "Hey there, fellow road enthusiasts! Ready to embark on a journey of hassle-free car management? Look no further than Wheel Wallet - the coolest ride companion you never knew you needed!",
+  ogDescription:
+    "Hey there, fellow road enthusiasts! Ready to embark on a journey of hassle-free car management? Look no further than Wheel Wallet - the coolest ride companion you never knew you needed!",
+});
+</script>
+
 <template>
   <NuxtLayout>
     <NuxtPage />
