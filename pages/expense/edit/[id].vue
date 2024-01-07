@@ -112,7 +112,7 @@ async function handleDelete() {
       class="self-end font-bold shadow-[#181926] shadow-lg flex justify-center items-center p-3 h-10 text-left uppercase rounded-3xl border-transparent duration-300 hover:bg-transparent bg-error-color text-background-color hover:text-error-color hover:border-error-color border-4"
       @click="showDeletePopup = true"
     >
-      delete car
+      delete expense
     </button>
     <div
       class="flex flex-col gap-10 items-start py-20 px-20 mt-5 w-3/4 text-lg rounded-3xl bg-overlay-background-color"
