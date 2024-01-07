@@ -26,6 +26,13 @@ export const useExpenseStore = defineStore("expense", () => {
     return response;
   }
 
+  async function deleteExpense(expenseID: number) {
+    const response = await useApiFetch(`/api/expense/${expenseID}/delete`, {
+      method: "delete",
+    });
+    return response;
+  }
+
   async function updateExpense(
     expenseEditData: ExpenseEditData,
     expenseID: number,
@@ -51,6 +58,7 @@ export const useExpenseStore = defineStore("expense", () => {
     fetchExpensesByUserID,
     createExpense,
     updateExpense,
+    deleteExpense,
     hasExpenses,
   };
 });
